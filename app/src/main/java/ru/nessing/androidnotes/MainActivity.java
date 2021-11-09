@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.blank_Fragment, new BlankFragment())
+                .replace(R.id.blank_Fragment, new BlankFragment())
                 .commit();
     }
 

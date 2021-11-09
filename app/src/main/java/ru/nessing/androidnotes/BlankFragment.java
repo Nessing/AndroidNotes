@@ -1,24 +1,23 @@
 package ru.nessing.androidnotes;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 public class BlankFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRetainInstance(true);
     }
 
     @Override
@@ -33,14 +32,25 @@ public class BlankFragment extends Fragment {
         initList(view);
     }
 
+    @SuppressLint("SetTextI18n")
     private void initList(View view) {
         LinearLayout layout = (LinearLayout) view;
-        String[] notes = getResources().getStringArray(R.array.notes);
+        ArrayNotes arrayNotes = ArrayNotes.getInstance();
 
-        for (int i = 0; i < notes.length; i++) {
+        for (int i = 0; i < arrayNotes.size(); i++) {
+            System.out.println(arrayNotes.getNoteById(0).getTitle());
             TextView textView = new TextView(getContext());
-            textView.setText(notes[i]);
-            textView.setTextSize(30);
+            if (arrayNotes.getNoteById(i).getDescription().length() > 50) {
+                textView.setText(arrayNotes.getNoteById(i).getTitle() + "\n" +
+                        arrayNotes.getNoteById(i).getDate() + "\n" +
+                        arrayNotes.getNoteById(i).getDescription().substring(0, 50) + "...");
+            } else {
+                textView.setText(arrayNotes.getNoteById(i).getTitle() + "\n" +
+                        arrayNotes.getNoteById(i).getDate() + "\n" +
+                        arrayNotes.getNoteById(i).getDescription());
+            }
+
+            textView.setTextSize(20);
 
             final int position = i;
             textView.setOnClickListener(v -> {
@@ -49,6 +59,33 @@ public class BlankFragment extends Fragment {
 
             layout.addView(textView);
         }
+
+//        for (int i = 0; i < noteList.size(); i++) {
+//            TextView textView = new TextView(getContext());
+//            textView.setText(noteList.get(i).getTitle() + "\n" + noteList.get(i).getDate() + "\n" + noteList.get(i).getDescription());
+//            textView.setTextSize(20);
+//
+//            final int position = i;
+//            textView.setOnClickListener(v -> {
+//                showImage(position);
+//            });
+//
+//            layout.addView(textView);
+//        }
+//        String[] notes = getResources().getStringArray(R.array.notes);
+//
+//        for (int i = 0; i < notes.length; i++) {
+//            TextView textView = new TextView(getContext());
+//            textView.setText(notes[i]);
+//            textView.setTextSize(30);
+//
+//            final int position = i;
+//            textView.setOnClickListener(v -> {
+//                showImage(position);
+//            });
+//
+//            layout.addView(textView);
+//        }
     }
 
     private boolean isLand() {
@@ -66,7 +103,7 @@ public class BlankFragment extends Fragment {
     private void showImagePort(int position) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.blank_Fragment, MoreNoteFragment.newInstance(position))
+                .replace(R.id.blank_Fragment, MoreNoteFragment.newInstance(position))
                 .addToBackStack(null)
                 .commit();
     }
@@ -74,7 +111,7 @@ public class BlankFragment extends Fragment {
     private void showImageLand(int position) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.blank_Fragment_img, MoreNoteFragment.newInstance(position))
+                .replace(R.id.blank_Fragment_img, MoreNoteFragment.newInstance(position))
                 .addToBackStack(null)
                 .commit();
     }

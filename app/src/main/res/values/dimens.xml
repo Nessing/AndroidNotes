@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="font_size_list">8sp</dimen>
-    <dimen name="font_size_more_note">10sp</dimen>
-    <dimen name="frame_padding">10dp</dimen>
+    <dimen name="font_size_more_title">8sp</dimen>
+    <dimen name="font_size_more_date">8sp</dimen>
+    <dimen name="font_size_more_description">10sp</dimen>
+    <dimen name="padding_frame">10dp</dimen>
+    <dimen name="size_button_round">70dp</dimen>
+    <dimen name="size_button_round_land">50dp</dimen>
+    <dimen name="margin_frame_button">20dp</dimen>
+    <dimen name="margin_frame_button_land">10dp</dimen>
+    <dimen name="font_size_button_plus">30sp</dimen>
+    <dimen name="font_size_button_plus_land">20sp</dimen>
 </resources>

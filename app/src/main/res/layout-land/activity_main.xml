@@ -3,23 +3,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/blank_Fragment"
-        android:background="@color/teal_700"
-        android:padding="@dimen/frame_padding"
+        android:id="@+id/frame_menu"
         android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_height="match_parent" />
+        android:background="@color/teal_700">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/blank_Fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add"
+                android:layout_width="@dimen/size_button_round_land"
+                android:layout_height="@dimen/size_button_round_land"
+                android:layout_gravity="end"
+                android:background="@drawable/button_bg_round"
+                android:shadowColor="@color/teal_700"
+                android:text="@string/text_button_plus"
+                android:layout_margin="@dimen/margin_frame_button_land"
+                android:textSize="@dimen/font_size_button_plus_land"
+                app:backgroundTint="@null" />
+        </FrameLayout>
+    </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/blank_Fragment_img"
-        android:background="@color/teal_200"
-        android:padding="@dimen/frame_padding"
+        android:id="@+id/blank_Fragment_img1"
         android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_height="match_parent" />
+        android:background="@color/teal_200"
+        android:padding="@dimen/padding_frame" >
+        <ScrollView
+            android:id="@+id/scroll_view2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/blank_Fragment_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+    </FrameLayout>
+
 
 </LinearLayout>

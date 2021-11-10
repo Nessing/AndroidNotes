@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/JavaGeekBrains/AndroidNotes/app/src/main/res/drawable/button_bg_round.xml" value="0.3828125" />
         <entry key="..\:/JavaGeekBrains/AndroidNotes/app/src/main/res/layout-land/activity_main.xml" value="0.25" />
+        <entry key="..\:/JavaGeekBrains/AndroidNotes/app/src/main/res/layout-v27/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/JavaGeekBrains/AndroidNotes/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/JavaGeekBrains/AndroidNotes/app/src/main/res/layout/fragment_blank.xml" value="0.22" />
         <entry key="..\:/JavaGeekBrains/AndroidNotes/app/src/main/res/layout/fragment_more_note.xml" value="0.20520833333333333" />

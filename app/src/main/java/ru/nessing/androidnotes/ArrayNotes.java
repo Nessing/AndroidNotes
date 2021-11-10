@@ -7,7 +7,7 @@ public class ArrayNotes {
 
     private static ArrayNotes instance;
 
-    private static int keys = 3;
+    private static int keys = 2;
     private Map<Integer, Note> noteList = new HashMap<>();
 
     public ArrayNotes() {

@@ -51,7 +51,7 @@ public class MoreNoteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView textView = view.findViewById(R.id.full_description);
-        textView.setTextSize(30);
+        textView.setTextSize(getResources().getDimension(R.dimen.font_size_more_note));
 
         ArrayNotes arrayNotes = ArrayNotes.getInstance();
         textView.setText(arrayNotes.getNoteById(position).getDescription());

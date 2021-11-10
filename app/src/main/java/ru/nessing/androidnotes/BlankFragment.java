@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class BlankFragment extends Fragment {
+    private ArrayNotes arrayNotes = ArrayNotes.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,12 @@ public class BlankFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void initList(View view) {
         LinearLayout layout = (LinearLayout) view;
-        ArrayNotes arrayNotes = ArrayNotes.getInstance();
+        int font_size = (int) getResources().getDimension(R.dimen.font_size_list);
 
         for (int i = 0; i < arrayNotes.size(); i++) {
             System.out.println(arrayNotes.getNoteById(0).getTitle());
             TextView textView = new TextView(getContext());
+            textView.setPadding(font_size, font_size, font_size, font_size);
             if (arrayNotes.getNoteById(i).getDescription().length() > 50) {
                 textView.setText(arrayNotes.getNoteById(i).getTitle() + "\n" +
                         arrayNotes.getNoteById(i).getDate() + "\n" +
@@ -50,7 +52,7 @@ public class BlankFragment extends Fragment {
                         arrayNotes.getNoteById(i).getDescription());
             }
 
-            textView.setTextSize(20);
+            textView.setTextSize(getResources().getDimension(R.dimen.font_size_list));
 
             final int position = i;
             textView.setOnClickListener(v -> {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+   <string-array name="notes">
+       <item>запись 1</item>
+       <item>запись 2</item>
+       <item>запись 3</item>
+   </string-array>
+
+    <integer-array name="images">
+        <item>@drawable/msc</item>
+        <item>@drawable/ebrg</item>
+        <item>@drawable/sam</item>
+    </integer-array>
+
+</resources>

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -104,7 +103,7 @@ public class MainFragment extends Fragment {
     private void showImagePort(int position, String title, String date, String desc) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_menu, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
+                .replace(R.id.frame_menu_vertical, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
                 .addToBackStack(null)
                 .commit();
     }

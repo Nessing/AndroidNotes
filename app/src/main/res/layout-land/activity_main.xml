@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/frame_menu"
+        android:id="@+id/frame_menu_horizontal"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

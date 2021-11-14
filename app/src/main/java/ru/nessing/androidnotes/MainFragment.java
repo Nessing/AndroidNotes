@@ -1,20 +1,25 @@
 package ru.nessing.androidnotes;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class MainFragment extends Fragment {
     private ArrayNotes arrayNotes = ArrayNotes.getInstance();
+    private int pos = MainActivity.getPos();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,11 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (pos != -1) {
+            Note note = arrayNotes.getNoteById(pos);
+            showImage(pos, note.getTitle(), note.getDate(), note.getDescription());
+            System.out.println(pos);
+        }
         initList(view);
     }
 
@@ -55,6 +65,7 @@ public class MainFragment extends Fragment {
 
             final int position = i;
             textView.setOnClickListener(v -> {
+                MainActivity.setPos(position);
                 showImage(position, titleNote, date, desc);
             });
             layout.addView(textView);
@@ -112,7 +123,7 @@ public class MainFragment extends Fragment {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.blank_Fragment_img, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
-                .addToBackStack(null)
+//                .addToBackStack(null)
                 .commit();
     }
 }

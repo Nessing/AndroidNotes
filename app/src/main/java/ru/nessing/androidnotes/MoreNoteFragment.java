@@ -77,7 +77,12 @@ public class MoreNoteFragment extends Fragment {
 
         Button buttonBack = view.findViewById(R.id.button_back);
         buttonBack.setOnClickListener(v -> {
-            requireActivity().getSupportFragmentManager().popBackStack();
+            MainActivity.setPos(-1);
+            int countBackStack = getActivity().getSupportFragmentManager().getBackStackEntryCount();
+            while (countBackStack > 0) {
+                countBackStack--;
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
         });
 
 //        Button buttonRemove = view.findViewById(R.id.button_remove);

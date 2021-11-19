@@ -1,20 +1,25 @@
 package ru.nessing.androidnotes;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-public class BlankFragment extends Fragment {
+public class MainFragment extends Fragment {
     private ArrayNotes arrayNotes = ArrayNotes.getInstance();
+    private int pos = MainActivity.getPos();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,11 @@ public class BlankFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (pos != -1) {
+            Note note = arrayNotes.getNoteById(pos);
+            showImage(pos, note.getTitle(), note.getDate(), note.getDescription());
+            System.out.println(pos);
+        }
         initList(view);
     }
 
@@ -39,26 +49,25 @@ public class BlankFragment extends Fragment {
         int font_size = (int) getResources().getDimension(R.dimen.font_size_list);
 
         for (int i = 0; i < arrayNotes.size(); i++) {
-            System.out.println(arrayNotes.getNoteById(0).getTitle());
+            String titleNote = arrayNotes.getNoteById(i).getTitle();
+            String date = arrayNotes.getNoteById(i).getDate();
+            String desc = arrayNotes.getNoteById(i).getDescription();
+
             TextView textView = new TextView(getContext());
             textView.setPadding(font_size, font_size, font_size, font_size);
-            if (arrayNotes.getNoteById(i).getDescription().length() > 50) {
-                textView.setText(arrayNotes.getNoteById(i).getTitle() + "\n" +
-                        arrayNotes.getNoteById(i).getDate() + "\n" +
-                        arrayNotes.getNoteById(i).getDescription().substring(0, 50) + "...");
+            if (desc.length() > 50) {
+                textView.setText(titleNote + "\n" + date + "\n" + desc.substring(0, 50) + "...");
             } else {
-                textView.setText(arrayNotes.getNoteById(i).getTitle() + "\n" +
-                        arrayNotes.getNoteById(i).getDate() + "\n" +
-                        arrayNotes.getNoteById(i).getDescription());
+                textView.setText(titleNote + "\n" + date + "\n" + desc);
             }
 
             textView.setTextSize(getResources().getDimension(R.dimen.font_size_list));
 
             final int position = i;
             textView.setOnClickListener(v -> {
-                showImage(position);
+                MainActivity.setPos(position);
+                showImage(position, titleNote, date, desc);
             });
-
             layout.addView(textView);
         }
 
@@ -94,27 +103,27 @@ public class BlankFragment extends Fragment {
         return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-    private void showImage(int position) {
+    private void showImage(int position, String title, String date, String desc) {
         if (isLand()) {
-            showImageLand(position);
+            showImageLand(position, title, date, desc);
         } else {
-            showImagePort(position);
+            showImagePort(position, title, date, desc);
         }
     }
 
-    private void showImagePort(int position) {
+    private void showImagePort(int position, String title, String date, String desc) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.blank_Fragment, MoreNoteFragment.newInstance(position))
+                .replace(R.id.frame_menu_vertical, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
                 .addToBackStack(null)
                 .commit();
     }
 
-    private void showImageLand(int position) {
+    private void showImageLand(int position, String title, String date, String desc) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.blank_Fragment_img, MoreNoteFragment.newInstance(position))
-                .addToBackStack(null)
+                .replace(R.id.blank_Fragment_img, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
+//                .addToBackStack(null)
                 .commit();
     }
 }

@@ -4,27 +4,22 @@
 
     <item
         android:id="@+id/action_search"
-        android:title="Поиск"
+        android:title="@string/main_icon_search"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView"/>
 
+    <!--        android:icon="@android:drawable/ic_menu_sort_alphabetically"-->
     <item
-        android:icon="@android:drawable/ic_menu_sort_alphabetically"
+
+        android:icon="@drawable/icon_sort"
         android:id="@+id/action_sort"
-        android:title="Сортировать"
+        android:title="@string/main_icon_sort"
         app:showAsAction="always"/>
 
     <item
         android:icon="@android:drawable/ic_menu_edit"
         android:id="@+id/action_edit"
-        android:title="Редактировать"
+        android:title="@string/main_icon_edit"
         app:showAsAction="always"/>
-
-<!--    <item-->
-<!--        android:icon="@android:drawable/ic_menu_info_details"-->
-<!--        android:id="@+id/action_about"-->
-<!--        android:title="Поиск"-->
-<!--        app:showAsAction="always"-->
-<!--        app:actionViewClass="android.widget.SearchView"/>-->
 
 </menu>

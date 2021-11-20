@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,8 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import java.util.List;
 
 public class MoreNoteFragment extends Fragment {
 
@@ -44,7 +45,18 @@ public class MoreNoteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_more_note, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuItem menuSearch = menu.findItem(R.id.action_search);
+        MenuItem menuSort = menu.findItem(R.id.action_sort);
+        MenuItem menuEdit = menu.findItem(R.id.action_edit);
+        if (menuSearch != null) menuSearch.setVisible(false);
+        if (menuSort != null) menuSort.setVisible(false);
+        if (menuEdit != null) menuEdit.setVisible(true);
     }
 
     @SuppressLint({"SetTextI18n", "ResourceType"})
@@ -84,6 +96,7 @@ public class MoreNoteFragment extends Fragment {
                 requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
+
 
 //        Button buttonRemove = view.findViewById(R.id.button_remove);
 //        buttonRemove.setOnClickListener(v -> {

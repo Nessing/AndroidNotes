@@ -29,15 +29,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom">
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_add"
                 android:layout_width="@dimen/size_button_round_land"
                 android:layout_height="@dimen/size_button_round_land"
                 android:layout_gravity="end"
+                android:layout_margin="@dimen/margin_frame_button_land"
                 android:background="@drawable/button_bg_round"
                 android:shadowColor="@color/teal_700"
                 android:text="@string/text_button_plus"
-                android:layout_margin="@dimen/margin_frame_button_land"
                 android:textSize="@dimen/font_size_button_plus_land"
                 app:backgroundTint="@null" />
         </FrameLayout>

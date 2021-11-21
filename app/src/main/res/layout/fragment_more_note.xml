@@ -61,20 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
             android:layout_weight="1"
-            android:text="back" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/button_remove"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_weight="1"
-            android:text="remove" />
+            android:text="@string/button_back_text" />
 
     </LinearLayout>
 

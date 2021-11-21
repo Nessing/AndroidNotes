@@ -39,7 +39,7 @@
                 android:layout_margin="@dimen/margin_frame_button"
                 android:background="@drawable/button_bg_round"
                 android:shadowColor="@color/teal_700"
-                android:text="@string/text_button_plus"
+                android:text="@string/button_plus_text"
                 android:textSize="@dimen/font_size_button_plus"
                 app:backgroundTint="@null" />
         </FrameLayout>

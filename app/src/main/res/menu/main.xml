@@ -8,7 +8,6 @@
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView"/>
 
-    <!--        android:icon="@android:drawable/ic_menu_sort_alphabetically"-->
     <item
 
         android:icon="@drawable/icon_sort"
@@ -20,6 +19,18 @@
         android:icon="@android:drawable/ic_menu_edit"
         android:id="@+id/action_edit"
         android:title="@string/main_icon_edit"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
+
+    <item
+        android:icon="@android:drawable/ic_menu_edit"
+        android:id="@+id/action_remove"
+        android:title="Удалить"
+        app:showAsAction="never"/>
+
+    <item
+        android:icon="@android:drawable/ic_menu_edit"
+        android:id="@+id/action_exit"
+        android:title="Выход"
+        app:showAsAction="never"/>
 
 </menu>

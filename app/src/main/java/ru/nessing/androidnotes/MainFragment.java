@@ -1,8 +1,7 @@
 package ru.nessing.androidnotes;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.app.AlertDialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,14 +10,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 public class MainFragment extends Fragment {
     private ArrayNotes arrayNotes = ArrayNotes.getInstance();
@@ -47,15 +45,33 @@ public class MainFragment extends Fragment {
         initList(view);
     }
 
-
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        MenuItem menuItem = menu.findItem(R.id.action_edit);
-        if (menuItem != null) {
-            menuItem.setVisible(false);
-        }
+        MenuItem menuEdit = menu.findItem(R.id.action_edit);
+        MenuItem menuRemove = menu.findItem(R.id.action_remove);
+        if (menuEdit != null) menuEdit.setVisible(false);
+        if (menuRemove != null) menuRemove.setVisible(false);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_exit) {
+            new AlertDialog.Builder(getContext())
+                    .setCancelable(true)
+                    .setTitle("Выход")
+                    .setMessage("Выйти из приложения?")
+                    .setPositiveButton("Да", ((dialogInterface, i) -> {
+                        getActivity().finish();
+                        Toast.makeText(getContext(), "Программа закрыта", Toast.LENGTH_SHORT).show();
+                    }))
+                    .setNegativeButton("нет", ((dialogInterface, i) -> {}))
+                    .show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     @SuppressLint("SetTextI18n")
     private void initList(View view) {
@@ -84,33 +100,6 @@ public class MainFragment extends Fragment {
             });
             layout.addView(textView);
         }
-
-//        for (int i = 0; i < noteList.size(); i++) {
-//            TextView textView = new TextView(getContext());
-//            textView.setText(noteList.get(i).getTitle() + "\n" + noteList.get(i).getDate() + "\n" + noteList.get(i).getDescription());
-//            textView.setTextSize(20);
-//
-//            final int position = i;
-//            textView.setOnClickListener(v -> {
-//                showImage(position);
-//            });
-//
-//            layout.addView(textView);
-//        }
-//        String[] notes = getResources().getStringArray(R.array.notes);
-//
-//        for (int i = 0; i < notes.length; i++) {
-//            TextView textView = new TextView(getContext());
-//            textView.setText(notes[i]);
-//            textView.setTextSize(30);
-//
-//            final int position = i;
-//            textView.setOnClickListener(v -> {
-//                showImage(position);
-//            });
-//
-//            layout.addView(textView);
-//        }
     }
 
     private boolean isLand() {

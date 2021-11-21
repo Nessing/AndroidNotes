@@ -1,5 +1,7 @@
 package ru.nessing.androidnotes;
 
+import androidx.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +25,14 @@ public class ArrayNotes {
         return instance;
     }
 
-    public void deleteNote(String title) {
+    public void deleteNoteByTitle(String title) {
         keys--;
         noteList.remove(title);
+    }
+
+    public void deleteNoteById(int id) {
+        keys--;
+        noteList.remove(id);
     }
 
     public void addNote(String title, String date, String description) {
@@ -41,4 +48,12 @@ public class ArrayNotes {
         return noteList.get(id);
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        for (Map.Entry<Integer, Note> map : noteList.entrySet()) {
+            System.out.println(map.getKey() + " : " + map.getValue().getTitle());
+        }
+        return super.toString();
+    }
 }

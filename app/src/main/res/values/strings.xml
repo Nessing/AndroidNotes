@@ -10,4 +10,6 @@
     <string name="main_icon_sort">Сортировать</string>
     <string name="main_icon_edit">Редактировать</string>
     <string name="button_back_text">Назад</string>
+    <string name="navigation_drawer_open">navigation_drawer_open</string>
+    <string name="navigation_drawer_close">navigation_drawer_close</string>
 </resources>

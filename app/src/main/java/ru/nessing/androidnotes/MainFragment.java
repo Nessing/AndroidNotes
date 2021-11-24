@@ -117,7 +117,7 @@ public class MainFragment extends Fragment {
     private void showImagePort(int position, String title, String date, String desc) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_menu_vertical, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
+                .replace(R.id.blank_Fragment_img1, MoreNoteFragment.newInstance(new Note(position, title, date, desc)))
                 .addToBackStack(null)
                 .commit();
     }

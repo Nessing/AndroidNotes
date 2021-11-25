@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame_menu_vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:id="@+id/drawer_layout"
+    tools:openDrawer="start"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:id="@+id/scroll_view"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/blank_Fragment"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:text="@android:string/autofill"/>
-        </LinearLayout>
-    </ScrollView>
-    
-    <com.google.android.material.button.MaterialButton
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/teal_700"
+            app:subtitle="Menu"
+            app:subtitleTextColor="@color/white"
+            app:title="меню"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/recycle_view_item" />
+    </FrameLayout>
+
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/frame_menu_vertical"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="@color/background_main_frame"-->
+    <!--        tools:context=".MainActivity">-->
+
+    <!--        <ScrollView-->
+    <!--            android:id="@+id/scroll_view"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/blank_Fragment"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="vertical" />-->
+    <!--        </ScrollView>-->
+
+    <!--        <FrameLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="bottom">-->
+
+    <!--            <com.google.android.material.button.MaterialButton-->
+    <!--                android:id="@+id/button_add"-->
+    <!--                android:layout_width="@dimen/size_button_round"-->
+    <!--                android:layout_height="@dimen/size_button_round"-->
+    <!--                android:layout_gravity="end"-->
+    <!--                android:layout_margin="@dimen/margin_frame_button"-->
+    <!--                android:background="@drawable/button_bg_round"-->
+    <!--                android:shadowColor="@color/teal_700"-->
+    <!--                android:text="@string/button_plus_text"-->
+    <!--                android:textSize="@dimen/font_size_button_plus"-->
+    <!--                app:backgroundTint="@null" />-->
+    <!--        </FrameLayout>-->
+
+    <!--    </FrameLayout>-->
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu_activity" />
 
-
-</FrameLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

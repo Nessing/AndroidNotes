@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ public class MoreNoteFragment extends Fragment {
 
     private static final String ARG_POS = "ARG_POS";
 
-    private ArrayNotes arrayNotes = ArrayNotes.getInstance();
+//    private ArrayNotes arrayNotes = ArrayNotes.getInstance();
 
     private Note note;
 
@@ -82,7 +83,7 @@ public class MoreNoteFragment extends Fragment {
                             countBackStack--;
                             requireActivity().getSupportFragmentManager().popBackStack();
                         }
-                        arrayNotes.deleteNoteById(this.note.getId());
+//                        arrayNotes.deleteNoteById(this.note.getId());
                         Toast.makeText(getContext(), "Запись удалена", Toast.LENGTH_SHORT).show();
                     }))
                     .setNegativeButton("нет", ((dialogInterface, i) -> {}))
@@ -111,10 +112,21 @@ public class MoreNoteFragment extends Fragment {
 
             TypedArray images = getResources().obtainTypedArray(R.array.images);
 
-            ImageView imageView = view.findViewById(R.id.image_view);
-            imageView.setImageResource(images.getResourceId(note.getId(), 0));
+            //TODO Тест массива картинок
 
+            LinearLayout layout = view.findViewById(R.id.layout_scroll);
+
+            for (int i = 0; i < note.getImage().length; i++) {
+//                ImageView imageView = view.findViewById(R.id.image_view);
+                ImageView imageView = new ImageView(getContext());
+                int padding = 70;
+                imageView.setPadding(padding, padding, padding, padding);
+//            imageView.setImageResource(images.getResourceId(note.getId(), 0));
+                imageView.setImageResource(note.getImage()[i]);
+                layout.addView(imageView);
+            }
             images.recycle();
+
         }
 
         Button buttonBack = view.findViewById(R.id.button_back);

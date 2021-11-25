@@ -9,72 +9,73 @@
     tools:openDrawer="start"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/teal_700"
-            app:subtitle="Menu"
-            app:subtitleTextColor="@color/white"
-            app:title="меню"
-            app:titleTextColor="@color/white" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
     <FrameLayout
+        android:id="@+id/main_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/action_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <FrameLayout
+            android:background="@color/teal_700"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/recycle_view_item" />
-    </FrameLayout>
+            android:layout_height="match_parent">
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/frame_menu_vertical"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@color/background_main_frame"-->
-<!--        tools:context=".MainActivity">-->
-
-<!--        <ScrollView-->
-<!--            android:id="@+id/scroll_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/blank_Fragment"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical" />-->
-<!--        </ScrollView>-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/recycle_view_item" />
+        </FrameLayout>
 
 <!--        <FrameLayout-->
+<!--            android:layout_weight="1"-->
+<!--            android:id="@+id/frame_menu_vertical"-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="bottom">-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/background_main_frame"-->
+<!--            tools:context=".MainActivity">-->
 
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/button_add"-->
-<!--                android:layout_width="@dimen/size_button_round"-->
-<!--                android:layout_height="@dimen/size_button_round"-->
-<!--                android:layout_gravity="end"-->
-<!--                android:layout_margin="@dimen/margin_frame_button"-->
-<!--                android:background="@drawable/button_bg_round"-->
-<!--                android:shadowColor="@color/teal_700"-->
-<!--                android:text="@string/button_plus_text"-->
-<!--                android:textSize="@dimen/font_size_button_plus"-->
-<!--                app:backgroundTint="@null" />-->
+<!--            <ScrollView-->
+<!--                android:id="@+id/scroll_view"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/blank_Fragment"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical" />-->
+<!--            </ScrollView>-->
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="bottom">-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/button_add"-->
+<!--                    android:layout_width="@dimen/size_button_round"-->
+<!--                    android:layout_height="@dimen/size_button_round"-->
+<!--                    android:layout_gravity="end"-->
+<!--                    android:layout_margin="@dimen/margin_frame_button"-->
+<!--                    android:background="@drawable/button_bg_round"-->
+<!--                    android:shadowColor="@color/teal_700"-->
+<!--                    android:text="@string/button_plus_text"-->
+<!--                    android:textSize="@dimen/font_size_button_plus"-->
+<!--                    app:backgroundTint="@null" />-->
+<!--            </FrameLayout>-->
+
 <!--        </FrameLayout>-->
+    </LinearLayout>
 
-<!--    </FrameLayout>-->
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

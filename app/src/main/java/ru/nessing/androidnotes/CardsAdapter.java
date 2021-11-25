@@ -12,7 +12,12 @@ import java.util.List;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
-    private List<Note> noteList;
+    private final List<Note> noteList;
+    private OnCardClickListener clickListener;
+
+    public void setClickListener(OnCardClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public CardsAdapter(List<Note> noteList) {
         this.noteList = noteList;
@@ -35,6 +40,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         return noteList.size();
     }
 
+
+
     class CardViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView = itemView.findViewById(R.id.text_view);
@@ -45,6 +52,15 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
 
         void bind (Note note) {
             textView.setText(note.getTitle());
+            textView.setOnClickListener(v -> {
+                if (clickListener != null) {
+                    clickListener.onCardClick(v, getAdapterPosition());
+                }
+            });
         }
+    }
+
+    interface OnCardClickListener {
+        void onCardClick(View view, int position);
     }
 }

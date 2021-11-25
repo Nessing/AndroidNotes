@@ -1,23 +1,18 @@
 package ru.nessing.androidnotes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
 
     private static int pos = -1;
 
@@ -29,46 +24,51 @@ public class MainActivity extends AppCompatActivity {
         pos = pos1;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        initToolBar();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_menu, new MainFragment())
+                .commit();
 
         List<Note> noteList = Arrays.asList(
-                new Note(0, "Заметка первая", "17.08.2020", "Очередное описание заметки"),
-                new Note(1, "Заметка первая", "22.09.2020", "Вторая заметка"),
-                new Note(2, "Заметка первая", "04.11.2020", "Еще одна заметка")
+                new Note(0, "Заметка Москвы", "17.08.2020", "Москва", R.drawable.msc),
+                new Note(1, "Заметка Екатеринбурга", "22.09.2020", "Екатеринбург", R.drawable.ebrg),
+                new Note(2, "Заметка Норильска", "17.08.2020", "Норильск (вроде)", R.drawable.nsk),
+                new Note(3, "Заметка Самары", "22.09.2020", "Самара", R.drawable.sam),
+                new Note(4, "Заметка Питера и Москвы", "17.08.2020", "Санкт-Петербург – русский портовый " +
+                        "город на побережье Балтийского моря, который в течение двух веков служил столицей Российской империи. " +
+                        "Он был основан в 1703 году Петром I, которому воздвигнут знаменитый памятник \"Медный всадник\". Город " +
+                        "по праву считается культурным центром страны. У туристов пользуются популярностью Мариинский театр, где " +
+                        "проходят оперные и балетные спектакли, и Государственный Русский музей с коллекцией русского искусства, " +
+                        "которая включает как православные иконы, так и работы художника-абстракциониста Василия Кандинского.", R.drawable.spb, R.drawable.msc),
+                new Note(5, "Заметка Москвы", "17.08.2020", "Москва опять", R.drawable.msc),
+                new Note(6, "Заметка Екатеринбурга", "22.09.2020", "Екатеринбург снова", R.drawable.ebrg),
+                new Note(7, "Заметка Норильска", "17.08.2020", "Норильск (вроде)", R.drawable.nsk),
+                new Note(8, "Заметка Самары", "22.09.2020", "Самара", R.drawable.sam),
+                new Note(9, "Заметка только Питера", "17.08.2020", "Питер", R.drawable.spb)
         );
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         CardsAdapter adapter = new CardsAdapter(noteList);
+        adapter.setClickListener(((view, position) -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.action_container, MoreNoteFragment.newInstance(noteList.get(position)))
+                    .addToBackStack(null)
+                    .commit();
+            Toast.makeText(this, "Click on position " + position, Toast.LENGTH_SHORT).show();
+        }));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.blank_Fragment, new MainFragment())
-                .commit();
-    }
-
-    private void initToolBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
     }
 
     @Override

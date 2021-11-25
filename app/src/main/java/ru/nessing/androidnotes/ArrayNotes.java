@@ -18,9 +18,9 @@ public class ArrayNotes {
     public static ArrayNotes getInstance() {
         if (instance == null) {
             instance = new ArrayNotes();
-            instance.noteList.put(0, new Note(0, "заметка 1", "21.01.20", "Новый год прошел так себе"));
-            instance.noteList.put(1, new Note(1, "заметка 2", "05.03.20", "Начался март, а я все без денег"));
-            instance.noteList.put(2, new Note(2, "заметка 3", "17.08.20", "Уже лето, вроде солнце, а все равно тоскливо, может из-за дождя"));
+            instance.noteList.put(0, new Note(0, "заметка 1", "21.01.20", "Новый год прошел так себе", R.drawable.msc));
+            instance.noteList.put(1, new Note(1, "заметка 2", "05.03.20", "Начался март, а я все без денег", R.drawable.msc));
+            instance.noteList.put(2, new Note(2, "заметка 3", "17.08.20", "Уже лето, вроде солнце, а все равно тоскливо, может из-за дождя", R.drawable.msc));
         }
         return instance;
     }
@@ -37,7 +37,7 @@ public class ArrayNotes {
 
     public void addNote(String title, String date, String description) {
         keys++;
-        noteList.put(keys, new Note(keys, title, date, description));
+        noteList.put(keys, new Note(keys, title, date, description, R.drawable.msc));
     }
 
     public int size() {

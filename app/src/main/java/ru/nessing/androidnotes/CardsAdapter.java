@@ -1,5 +1,6 @@
 package ru.nessing.androidnotes;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +9,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
-    private final List<Note> noteList;
+    private final NoteSource noteSource;
+    private final Activity activity;
+
+    private int menuPosition = -1;
     private OnCardClickListener clickListener;
+
+    public CardsAdapter(Activity activity, NoteSource noteSource) {
+        this.noteSource = noteSource;
+        this.activity = activity;
+    }
+
+    public int getMenuPosition() {
+        return menuPosition;
+    }
 
     public void setClickListener(OnCardClickListener clickListener) {
         this.clickListener = clickListener;
-    }
-
-    public CardsAdapter(List<Note> noteList) {
-        this.noteList = noteList;
     }
 
     @NonNull
@@ -32,14 +39,13 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-        holder.bind(noteList.get(position));
+        holder.bind(noteSource.getNote(position));
     }
 
     @Override
     public int getItemCount() {
-        return noteList.size();
+        return noteSource.size();
     }
-
 
 
     class CardViewHolder extends RecyclerView.ViewHolder {
@@ -48,14 +54,21 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            activity.registerForContextMenu(itemView);
         }
 
-        void bind (Note note) {
+        void bind(Note note) {
             textView.setText(note.getTitle());
             textView.setOnClickListener(v -> {
                 if (clickListener != null) {
                     clickListener.onCardClick(v, getAdapterPosition());
                 }
+            });
+            itemView.setOnLongClickListener(view -> {
+                menuPosition = getLayoutPosition();
+                itemView.showContextMenu(10f, 10f);
+                return false;
             });
         }
     }

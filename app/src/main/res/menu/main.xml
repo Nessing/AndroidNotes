@@ -22,6 +22,12 @@
         app:showAsAction="never"/>
 
     <item
+        android:icon="@drawable/icon_setting"
+        android:id="@+id/action_add"
+        android:title="Добавить"
+        app:showAsAction="never"/>
+
+    <item
         android:icon="@android:drawable/ic_menu_edit"
         android:id="@+id/action_remove"
         android:title="Удалить"

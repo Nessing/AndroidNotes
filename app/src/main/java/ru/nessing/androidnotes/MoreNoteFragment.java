@@ -61,8 +61,10 @@ public class MoreNoteFragment extends Fragment {
         MenuItem menuSort = menu.findItem(R.id.action_sort);
         MenuItem menuEdit = menu.findItem(R.id.action_edit);
         MenuItem menuRemove = menu.findItem(R.id.action_remove);
+        MenuItem menuAdd = menu.findItem(R.id.action_add);
         if (menuSearch != null) menuSearch.setVisible(false);
         if (menuSort != null) menuSort.setVisible(false);
+        if (menuAdd != null) menuAdd.setVisible(false);
         if (menuEdit != null) menuEdit.setVisible(true);
         if (menuRemove != null) menuRemove.setVisible(true);
     }
@@ -88,6 +90,15 @@ public class MoreNoteFragment extends Fragment {
                     }))
                     .setNegativeButton("нет", ((dialogInterface, i) -> {}))
                     .show();
+        } else if (id == R.id.action_edit) {
+//            noteSource.updateNote(adapter.getMenuPosition(), new Note(10, "Новая карта", "17.08.2020", "Москва", R.drawable.ic_launcher_background));
+//            adapter.notifyItemChanged(adapter.getMenuPosition());
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.action_container, FragmentEditNote.newInstance(note))
+                    .addToBackStack(null)
+                    .commit();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

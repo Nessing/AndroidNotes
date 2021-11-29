@@ -8,19 +8,23 @@ public class Note implements Parcelable {
     private String title;
     private String date;
     private String description;
+    private int[] image;
 
-    public Note(int id, String title, String date, String description) {
+    public Note(int id, String title, String date, String description, int... image) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.description = description + "\n";
+        this.image = image;
+
     }
 
     protected Note(Parcel in) {
+        id = in.readInt();
         title = in.readString();
         date = in.readString();
         description = in.readString();
-        id = in.readInt();
+        image = in.createIntArray();
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
@@ -72,11 +76,20 @@ public class Note implements Parcelable {
         return 0;
     }
 
+    public int[] getImage() {
+        return image;
+    }
+
+    public void setImage(int[] image) {
+        this.image = image;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(id);
         parcel.writeString(title);
         parcel.writeString(date);
         parcel.writeString(description);
+        parcel.writeIntArray(image);
     }
 }

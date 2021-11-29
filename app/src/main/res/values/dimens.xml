@@ -11,4 +11,10 @@
     <dimen name="margin_frame_button_land">10dp</dimen>
     <dimen name="font_size_button_plus">30sp</dimen>
     <dimen name="font_size_button_plus_land">20sp</dimen>
+    <dimen name="header_padding">20dp</dimen>
+    <dimen name="header_image_size">100dp</dimen>
+    <dimen name="header_name_text_size">20sp</dimen>
+    <dimen name="recycle_view_margin_start_end">5dp</dimen>
+    <dimen name="recycle_view_margin_bottom">20dp</dimen>
+    <dimen name="recycle_view_text_size">30sp</dimen>
 </resources>
